@@ -31,4 +31,8 @@ local bufname = vim.fn.expand('%:t')
 
 -- user functions
 vim.api.nvim_create_user_command('Mochacomp', 'term javac ' .. bufname, {})
-vim.api.nvim_create_user_command('Mocharun', 'term java ' .. bufname, {})
+vim.api.nvim_create_user_command("Mocharun",
+function(opts)
+  vim.cmd("term java " .. bufname .. " " .. opts.args)
+end, {nargs = "*",})
+
