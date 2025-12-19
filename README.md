@@ -1,21 +1,25 @@
 # mocha.nvim
 **Quality of Life Java features for Neovim**
 
+## Features
+* **Allows for Compilation and Execution of Java code using `:Mochacomp`and `:Mocharun`**
+* **Autogenerates class definitions and main functions for new Java files**
+
 ## Q&A
 
 ### Q: How do I install mocha.nvim?
 **Lazy.nvim**
 
 ```lua
-{
-  'Ronxvier/dent.nvim',
+return {
+  'Ronxvier/mocha.nvim',
 }
 ```
 
 **packer.nvim**
 
 ```lua
-use { 'Ronxvier/dent.nvim' }
+use { 'Ronxvier/mocha.nvim' }
 ```
 
 
