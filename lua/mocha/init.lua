@@ -4,8 +4,6 @@ vim.api.nvim_create_autocmd("BufEnter",{
     local bufname = vim.fn.expand('%:t')
     local fileType = string.sub(bufname, -5)
     local className = string.sub(bufname,0, -6)
-    print(fileType)
-    print(bufname)
     if isEmpty() and fileType == ".java" then
       local classDef = {
         "public class " .. className .. " {",
@@ -27,12 +25,21 @@ function isEmpty()
     end
 end
 
-local bufname = vim.fn.expand('%:t')
 
 -- user functions
-vim.api.nvim_create_user_command('Mochacomp', 'term javac ' .. bufname, {})
+vim.api.nvim_create_user_command('Mochacomp',
+function()
+  local bufname = vim.fn.expand('%:t')
+  vim.cmd('w')
+  vim.cmd("rightbelow vsp")
+  vim.cmd('term javac ' .. bufname)
+end, {})
+
 vim.api.nvim_create_user_command("Mocharun",
 function(opts)
+  local bufname = vim.fn.expand('%:t')
+  vim.cmd("w")
+  vim.cmd("rightbelow vsp")
   vim.cmd("term java " .. bufname .. " " .. opts.args)
 end, {nargs = "*",})
 
